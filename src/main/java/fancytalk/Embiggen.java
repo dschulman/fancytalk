@@ -54,9 +54,11 @@ public class Embiggen {
 	for (Synset syn: iw.getSenses())
 	    for (Word word: syn.getWords()) {
 		String lemma = word.getLemma();
-		String morphed = doMorphology(lemma, in.tag);
-		if (morphed.length() > biggest.length())
-		    biggest = morphed;
+		if (!lemma.contains(" ")) {
+		    String morphed = doMorphology(lemma, in.tag);
+		    if (morphed.length() > biggest.length())
+			biggest = morphed;
+		}
 	    }
 
 	return biggest;
