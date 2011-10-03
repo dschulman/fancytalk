@@ -5,7 +5,7 @@
 
   <groupId>fancytalk</groupId>
   <artifactId>fancytalk</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>0.1</version>
   <packaging>jar</packaging>
 
   <name>fancytalk</name>
@@ -31,5 +31,61 @@
       <artifactId>extjwnl</artifactId>
       <version>1.6.2</version>
     </dependency>
+    <dependency>
+      <groupId>simplenlg</groupId>
+      <artifactId>simplenlg</artifactId>
+      <version>4.3</version>
+    </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+	<groupId>com.savage7.maven.plugins</groupId>
+	<artifactId>maven-external-dependency-plugin</artifactId>
+	<version>0.4</version>
+	<configuration>
+	  <stagingDirectory>
+	    ${project.build.directory}/dependencies/
+	  </stagingDirectory>
+	  <artifactItems>
+	    <artifactItem>
+	      <groupId>simplenlg</groupId>
+	      <artifactId>simplenlg</artifactId>
+	      <version>4.3</version>
+	      <packaging>jar</packaging>
+	      <downloadUrl>
+		http://simplenlg.googlecode.com/files/simplenlg-v43.zip
+	      </downloadUrl>
+	      <extractFile>simplenlgv4.3.jar</extractFile>
+	    </artifactItem>
+	  </artifactItems>
+	</configuration>
+	<executions>
+	  <execution>
+	    <id>clean-external-dependencies</id>
+	    <phase>clean</phase>
+	    <goals>
+	      <goal>clean-external</goal>
+	    </goals>
+	  </execution>
+	  <execution>
+	    <id>resolve-install-external-dependencies</id>
+	    <phase>process-resources</phase>
+	    <goals>
+	      <goal>resolve-external</goal>
+	      <goal>install-external</goal>
+	    </goals>
+	  </execution>
+	  <execution>
+	    <id>deploy-external-dependencies</id>
+	    <phase>deploy</phase>
+	    <goals>
+	      <goal>deploy-external</goal>
+	    </goals>
+	  </execution>
+	</executions>
+      </plugin>
+    </plugins>
+  </build>
 </project>
