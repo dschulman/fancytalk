@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import net.sf.extjwnl.JWNL;
 import net.sf.extjwnl.dictionary.Dictionary;
+import org.apache.commons.codec.language.Soundex;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -16,7 +17,9 @@ public class Main {
 		"jwnl_properties.xml"));
 	Fancify fancify = new Fancify(
 	    Dictionary.getInstance(),
-	    new Embiggen());
+	    ScoreFunction.sum(
+		new Embiggen(),
+		new Alliterate(Soundex.US_ENGLISH).scaled(5)));
 	Reassemble reassemble = new Reassemble(
 	    Main.class.getResourceAsStream(
 		"latin-detokenizer.xml"));
