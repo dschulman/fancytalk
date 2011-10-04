@@ -5,6 +5,7 @@ Fancytalk is a pointless but sometimes amusing bit of wordplay.  You can think o
 In its current state, fancytalk doesn't *work* exactly, but does manage to produce things like this:
 
 > The quick brown fox jumped over the lazy dog.
+
 > The straightaway dark-brown slyboots alternated over the faineant frankfurter.
 
 ## Criteria
