@@ -14,8 +14,9 @@ public class Main {
 	JWNL.initialize(
 	    Main.class.getResourceAsStream(
 		"jwnl_properties.xml"));
-	Embiggen embiggen = new Embiggen(
-	    Dictionary.getInstance());
+	Fancify fancify = new Fancify(
+	    Dictionary.getInstance(),
+	    new Embiggen());
 	Reassemble reassemble = new Reassemble(
 	    Main.class.getResourceAsStream(
 		"latin-detokenizer.xml"));
@@ -27,7 +28,7 @@ public class Main {
 	while ((input = reader.readLine()) != null) {
 	    System.out.println(
 		reassemble.applyAll(
-		    embiggen.applyAllAll(
+		    fancify.applyAllAll(
 			analyze.apply(input))));
 	}
     }
