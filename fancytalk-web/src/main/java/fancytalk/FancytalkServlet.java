@@ -26,10 +26,12 @@ public class FancytalkServlet extends HttpServlet {
 	throws ServletException, IOException {
 	String in = req.getParameter("input");
 	PrintWriter out = resp.getWriter();
-	try {
-	    out.println(talker.apply(in));
-	} catch (JWNLException e) {
-	    throw new ServletException(e);
+	if (in != null) {
+	    try {
+		out.println(talker.apply(in));
+	    } catch (JWNLException e) {
+		throw new ServletException(e);
+	    }
 	}
 	out.flush();
 	out.close();
